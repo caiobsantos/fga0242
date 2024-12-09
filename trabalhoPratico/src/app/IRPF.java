@@ -290,5 +290,12 @@ public class IRPF {
 		return soma;
 	}
 	
+	public float calcularBaseDeCalculo() {
+		float rendimentosTributaveis = getTotalRendimentosTributaveis();
+		
+		float deducoesTotais = getTotalOutrasDeducoes();
+	
+		return Math.max(0, rendimentosTributaveis - deducoesTotais);
+	}
 	
 }
