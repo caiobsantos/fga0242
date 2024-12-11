@@ -298,7 +298,7 @@ public class IRPF {
 		return Math.max(0, rendimentosTributaveis - deducoesTotais);
 	}
 
-	public float calcularAliquota() {
+	public float calcularImposto() {
 		float faixa0 = 2112f;
 
 		float faixa1 = 2826.65f;
@@ -333,6 +333,12 @@ public class IRPF {
 
 		return imposto;
 		
+	}
+
+	public float calculoAliquotaEfetiva() {
+		float rendimentosTributaveis = getTotalRendimentosTributaveis();
+		float imposto = calcularImposto();
+		return (imposto / rendimentosTributaveis) * 100;
 	}
 	
 }

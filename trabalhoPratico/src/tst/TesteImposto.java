@@ -18,6 +18,13 @@ public class TesteImposto {
 	public void TesteBaseCalculoValor() {
         irpf.criarRendimento("Salario", true, 10000);
         irpf.cadastrarDeducaoIntegral("integral", 3189.59f);
-		assertEquals(987.9, irpf.calcularAliquota(), 0.01);
+		assertEquals(987.9, irpf.calcularImposto(), 0.01);
+	}
+
+	@Test
+	public void TesteBaseCalculoValor2() {
+        irpf.criarRendimento("Salario", true, 6000);
+        irpf.cadastrarDeducaoIntegral("integral", 1000);
+		assertEquals(490.03, irpf.calcularImposto(), 0.01);
 	}
 }
