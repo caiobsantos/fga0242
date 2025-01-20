@@ -2,13 +2,15 @@ package app;
 
 public class IRPF {
 
-	public static final boolean TRIBUTAVEL = true;
-	public static final boolean NAOTRIBUTAVEL = false;
-	private String[] nomeRendimento;
-	private boolean[] rendimentoTributavel;
-	private float[] valorRendimento;
-	private int numRendimentos;
-	private float totalRendimentos;
+	// public static final boolean TRIBUTAVEL = true;
+	// public static final boolean NAOTRIBUTAVEL = false;
+	// private String[] nomeRendimento;
+	// private boolean[] rendimentoTributavel;
+	// private float[] valorRendimento;
+	// private int numRendimentos;
+	// private float totalRendimentos;
+
+	private Rendimentos rendimentos;
 	
 	private String[] nomesDependentes;
 	private String[] parentescosDependentes;
@@ -23,10 +25,7 @@ public class IRPF {
 	private float[] valoresDeducoes;
 
 	public IRPF() {
-		nomeRendimento = new String[0];
-		rendimentoTributavel = new boolean[0];
-		valorRendimento = new float[0];
-		
+		rendimentos = new Rendimentos();
 		nomesDependentes = new String[0];
 		parentescosDependentes = new String[0];
 		numDependentes = 0;
@@ -49,30 +48,7 @@ public class IRPF {
 	 */
 	public void criarRendimento(String nome, boolean tributavel, float valor) {
 		//Adicionar o nome do novo rendimento
-		String[] temp = new String[nomeRendimento.length + 1];
-		for (int i=0; i<nomeRendimento.length; i++)
-			temp[i] = nomeRendimento[i];
-		temp[nomeRendimento.length] = nome;
-		nomeRendimento = temp;
-
-		//adicionar tributavel ou nao no vetor 
-		boolean[] temp2 = new boolean[rendimentoTributavel.length + 1];
-		for (int i=0; i<rendimentoTributavel.length; i++) 
-			temp2[i] = rendimentoTributavel[i];
-		temp2[rendimentoTributavel.length] = tributavel;
-		rendimentoTributavel = temp2;
-		
-		//adicionar valor rendimento ao vetor
-		float[] temp3 = new float[valorRendimento.length + 1];
-		for (int i=0; i<valorRendimento.length; i++) {
-			temp3[i] = valorRendimento[i];
-		}
-		temp3[valorRendimento.length] = valor; 
-		valorRendimento = temp3;
-		
-		this.numRendimentos += 1;
-		this.totalRendimentos += valor;
-		
+		rendimentos.criarRendimento(nome, tributavel, valor);
 	}
 
 	/**
@@ -80,7 +56,7 @@ public class IRPF {
 	 * @return numero de rendimentos
 	 */
 	public int getNumRendimentos() {
-		return numRendimentos;
+		return rendimentos.getNumRendimentos();
 	}
 
 	/**
@@ -88,7 +64,7 @@ public class IRPF {
 	 * @return valor total dos rendimentos
 	 */
 	public float getTotalRendimentos() {
-		return totalRendimentos;
+		return rendimentos.getTotalRendimentos();
 	}
 
 	/**
@@ -96,13 +72,7 @@ public class IRPF {
 	 * @return valor total dos rendimentos tributáveis
 	 */
 	public float getTotalRendimentosTributaveis() {
-		float totalRendimentosTributaveis = 0;
-		for (int i=0; i<rendimentoTributavel.length; i++) {
-			if (rendimentoTributavel[i]) {
-				totalRendimentosTributaveis += valorRendimento[i];
-			}
-		}
-		return totalRendimentosTributaveis;
+		return rendimentos.getTotalRendimentosTributaveis();
 	}
 
 	/**
@@ -113,21 +83,41 @@ public class IRPF {
 	 */
 	public void cadastrarDependente(String nome, String parentesco) {
 		// adicionar dependente 
+		// String[] temp = new String[nomesDependentes.length + 1];
+		// for (int i=0; i<nomesDependentes.length; i++) {
+		// 	temp[i] = nomesDependentes[i];
+		// }
+		// temp[nomesDependentes.length] = nome;
+		// nomesDependentes = temp;
+		adicionaNomeDependente(nome);
+		
+		// String[] temp2 = new String[parentescosDependentes.length + 1];
+		// for (int i=0; i<parentescosDependentes.length; i++) {
+		// 	temp2[i] = parentescosDependentes[i];
+		// }
+		// temp2[parentescosDependentes.length] = parentesco;
+		// parentescosDependentes = temp2;
+		adicionaNParentescoDependente(parentesco);
+		numDependentes++;
+	}
+
+	private void adicionaNomeDependente(String nome) {
 		String[] temp = new String[nomesDependentes.length + 1];
 		for (int i=0; i<nomesDependentes.length; i++) {
 			temp[i] = nomesDependentes[i];
 		}
 		temp[nomesDependentes.length] = nome;
 		nomesDependentes = temp;
-		
-		String[] temp2 = new String[parentescosDependentes.length + 1];
+	}
+
+	private void adicionaNParentescoDependente(String parentesco) {
+		String[] temp = new String[parentescosDependentes.length + 1];
 		for (int i=0; i<parentescosDependentes.length; i++) {
-			temp2[i] = parentescosDependentes[i];
+			temp[i] = parentescosDependentes[i];
 		}
-		temp2[parentescosDependentes.length] = parentesco;
-		parentescosDependentes = temp2;
+		temp[parentescosDependentes.length] = parentesco;
+		parentescosDependentes = temp;
 		
-		numDependentes++;
 	}
 
 	/**
