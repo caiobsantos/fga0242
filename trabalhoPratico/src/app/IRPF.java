@@ -75,10 +75,11 @@ public class IRPF {
 	 */
 	public void cadastrarDependente(String nome, String parentesco) {
 		adicionaNomeDependente(nome);
-		adicionaNParentescoDependente(parentesco);
+		adicionaParentescoDependente(parentesco);
 		numDependentes++;
 	}
 
+	// Método adicionado para realizar a operação de extração de método do cadastrarDependente()
 	private void adicionaNomeDependente(String nome) {
 		String[] temp = new String[nomesDependentes.length + 1];
 		for (int i=0; i<nomesDependentes.length; i++) {
@@ -88,7 +89,8 @@ public class IRPF {
 		nomesDependentes = temp;
 	}
 
-	private void adicionaNParentescoDependente(String parentesco) {
+	// Método adicionado para realizar a operação de extração de método do cadastrarDependente()
+	private void adicionaParentescoDependente(String parentesco) {
 		String[] temp = new String[parentescosDependentes.length + 1];
 		for (int i=0; i<parentescosDependentes.length; i++) {
 			temp[i] = parentescosDependentes[i];

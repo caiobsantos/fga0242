@@ -1,3 +1,5 @@
+//A classe escolhida para realizar a operação de extração de classe foi uma classe que represente os rendimentos. Fiz essa escolha pois haviam muitos atributos relacionados a rendimento na classe IRPF. Essa quantidade de atributos relacionados poderiam se tornar uma classe por si só, melhorando a orgnização do código.
+
 package app;
 
 public class Rendimentos {
