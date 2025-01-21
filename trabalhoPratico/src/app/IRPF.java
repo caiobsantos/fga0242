@@ -2,14 +2,6 @@ package app;
 
 public class IRPF {
 
-	// public static final boolean TRIBUTAVEL = true;
-	// public static final boolean NAOTRIBUTAVEL = false;
-	// private String[] nomeRendimento;
-	// private boolean[] rendimentoTributavel;
-	// private float[] valorRendimento;
-	// private int numRendimentos;
-	// private float totalRendimentos;
-
 	private Rendimentos rendimentos;
 	
 	private String[] nomesDependentes;
@@ -82,21 +74,7 @@ public class IRPF {
 	 * @param parentesco Grau de parentesco
 	 */
 	public void cadastrarDependente(String nome, String parentesco) {
-		// adicionar dependente 
-		// String[] temp = new String[nomesDependentes.length + 1];
-		// for (int i=0; i<nomesDependentes.length; i++) {
-		// 	temp[i] = nomesDependentes[i];
-		// }
-		// temp[nomesDependentes.length] = nome;
-		// nomesDependentes = temp;
 		adicionaNomeDependente(nome);
-		
-		// String[] temp2 = new String[parentescosDependentes.length + 1];
-		// for (int i=0; i<parentescosDependentes.length; i++) {
-		// 	temp2[i] = parentescosDependentes[i];
-		// }
-		// temp2[parentescosDependentes.length] = parentesco;
-		// parentescosDependentes = temp2;
 		adicionaNParentescoDependente(parentesco);
 		numDependentes++;
 	}
